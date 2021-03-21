@@ -4,22 +4,33 @@ import users_details from "jet-views/users/users_details";
 
 export default class DataView extends JetView {
   config() {
+    const toolbars = [
+      "mdi mdi-pencil",
+      "mdi mdi-access-point",
+      "wxi-check",
+      "wxi-angle-double-right"
+    ];
+    
     return {
       rows: [
         {
           view: "toolbar",
           css: "webix_dark",
-          paddingY: 1,
+          paddingX: 10,
           height: 40,
           elements: [
-            {view: "button", type: "icon", icon: "wxi-pencil", width: 40},
-            {view: "button", type: "icon", icon: "wxi-user", width: 40},
-            {view: "button", type: "icon", icon: "wxi-email", width: 40},
+            ...toolbars.map(v => ({
+              view: "button",
+              type: "icon",
+              icon: v,
+              width: 32,
+              css: "webix_transparent",
+              click: (id, event) => console.log(id, event),
+            })),
             {},
-            {view: "icon", icon: "mdi mdi-email"}, {view: "icon", icon: "mdi mdi-account"}, {
-              view: "icon",
-              icon: "mdi mdi-cogs"
-            }
+            {view: "icon", icon: "mdi mdi-email", click: (id, e) => {console.log(id, e)}},
+            {view: "icon", icon: "mdi mdi-account"},
+            {view: "icon", icon: "mdi mdi-cogs"}
           ]
         },
         {
